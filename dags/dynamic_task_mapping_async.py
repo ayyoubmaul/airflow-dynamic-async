@@ -6,7 +6,7 @@ from airflow.decorators import task_group
 from airflow.operators.python import PythonOperator
 from airflow.providers.http.hooks.http import HttpAsyncHook
 from airflow.operators.dummy_operator import DummyOperator
-
+import os
 import pandas as pd
 
 
@@ -14,7 +14,7 @@ DAG_ID = 'collect_weather_data'
 
 TMP_STORAGE_LOCATION = f'/tmp/{DAG_ID}'
 
-WEATHER_API_KEY = 'e946390f63eff94a70d2364ca7e5c212'
+WEATHER_API_KEY = os.environ['FINNHUB_API_KEY']
 
 DATA_DIR = '/data'
 USE_COLS = ['city_ascii', 'lat', 'lng', 'country', 'iso2', 'iso3']
